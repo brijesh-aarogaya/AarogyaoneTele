@@ -15,12 +15,14 @@ class AgoraConfig {
 
 class AgoraVideoCallScreen extends StatefulWidget {
   final AgoraConfig config;
+  final Widget? title;
   final Future<bool> Function()? onCallEnd;
 
   const AgoraVideoCallScreen({
     super.key,
     required this.config,
     required this.onCallEnd,
+    this.title,
   });
 
   @override
@@ -313,11 +315,6 @@ class _AgoraVideoCallScreenState extends State<AgoraVideoCallScreen>
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    Text(
-                      'Session ID: ${widget.config.channelId}',
-                      style: TextStyle(color: Colors.white54, fontSize: 14),
-                    ),
                   ],
                 ),
               ),
@@ -358,14 +355,7 @@ class _AgoraVideoCallScreenState extends State<AgoraVideoCallScreen>
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "DEMO",
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
+                      widget.title ?? SizedBox(),
                       const SizedBox(height: 4),
                       Text(
                         _isCallActive
